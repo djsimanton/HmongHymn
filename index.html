@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HmongHymn</title>
+
+  <!-- Redirect to the real homepage -->
+  <meta http-equiv="refresh" content="0; url=index/index.html">
+
+  <!-- Mobile-friendly -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Link to your CSS (relative from root) -->
+  <link href="css/mobile.css" rel="stylesheet">
+
+    <!-- Link to the manifest file -->
+  <link rel="manifest" href="/manifest.json">
+
+</head>
+<body>
+  <div class="content">
+    <h2>HmongHymn</h2>
+    <dl>
+      <dt>Starting . . .</dt>
+      <dd>If not redirected automatically, <a href="index/index.html">click here</a></dd>
+    </dl>
+  </div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Service Worker registered', reg))
+          .catch(err => console.error('Service Worker registration failed', err));
+      }
+    </script>
+</body>
+</html>
