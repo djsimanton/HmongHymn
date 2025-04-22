@@ -18,6 +18,13 @@
 here</a> </dd>
 </dl>
 </div>
+    <script>
+    if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+      .then(reg => console.log('Service Worker registered', reg))
+      .catch(err => console.error('Service Worker registration failed', err));
+    }
+    </script>
 <script type="text/javascript" src="cordova-2.5.0.js">
 <script type="text/javascript" src="js/index.js"/>
 <script type="text/javascript">
