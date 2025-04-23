@@ -5,7 +5,7 @@
   <title>HmongHymn</title>
 
   <!-- Redirect to the real homepage -->
-  <meta http-equiv="refresh" content="0; url=index/index.html">
+  <meta http-equiv="refresh" content="0; url=index/contents.html">
 
   <!-- Mobile-friendly -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,15 +26,15 @@
     <h2>HmongHymn</h2>
     <dl>
       <dt>Starting . . .</dt>
-      <dd>If not redirected automatically, <a href="index/index.html">click here</a></dd>
+      <dd>If not redirected automatically, <a href="index/contents.html">click here</a></dd>
     </dl>
   </div>
-    <script>
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js')
-          .then(reg => console.log('Service Worker registered', reg))
-          .catch(err => console.error('Service Worker registration failed', err));
-      }
-    </script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js')
+        .then(reg => console.log('Service Worker registered', reg))
+        .catch(err => console.error('Service Worker registration failed', err));
+    }
+  </script>
 </body>
 </html>
