@@ -17,7 +17,7 @@ git push -u origin master
 
 REM Echo deploy step
 echo --- Deploying to Netlify ---
-netlify deploy --prod
+netlify deploy --dir=F:\publishing\hmong\www-iphone --prod
 
 REM Done
 echo --- Deployment complete ---
