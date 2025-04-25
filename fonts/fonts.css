@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'Phetsarath';
+    src: url('fonts/Phetsarath-Regular.ttf');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Phetsarath';
+    src: url('fonts/Phetsarath-Bold.ttf');
+    font-weight: bold;
+}
+
+body {
+    font-family: 'Phetsarath', sans-serif;
+
+}
