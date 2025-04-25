@@ -1,6 +1,6 @@
 @echo off
 REM Set working directory
-cd /d C:\Users\D'Arcy\Dropbox\Publishing\App building\hmong\www-iphone
+cd /d "C:\Users\D'Arcy\Dropbox\Publishing\App building\hmong\www-iphone"
 
 REM Echo current step
 echo --- Adding all files to Git ---
@@ -17,7 +17,7 @@ git push -u origin master
 
 REM Echo deploy step
 echo --- Deploying to Netlify ---
-netlify deploy --dir=C:\Users\D'Arcy\Dropbox\Publishing\App building\hmong\www-iphone --prod
+netlify deploy --dir="C:\Users\D'Arcy\Dropbox\Publishing\App building\hmong\www-iphone" --prod
 
 REM Done
 echo --- Deployment complete ---
