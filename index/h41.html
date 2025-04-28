@@ -1,7 +1,20 @@
 ﻿<!DOCTYPE HTML>
-<html> 
-            param($m) "$($m.Groups[1].Value)`n<link rel=""manifest"" href=""/manifest.json"">"
-        
+<html><head>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#003366">
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(function(registration) {
+                        console.log('Service Worker registered with scope:', registration.scope);
+                    })
+                    .catch(function(error) {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
 <!-- Author: W3layouts Author URL: http://w3layouts.com License: Creative Commons Attribution 3.0 Unported License URL: http://creativecommons.org/licenses/by/3.0/ --><title>HmongHymn</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -111,28 +124,28 @@ Yuav xyuamxim qhovmuag me koj saib dabtsi</p>
 <p>&nbsp;
 </p>
 <p>
-2.Qhovntsej â€¦â€¦Koj mloog dabtsi
+2.Qhovntsej ……Koj mloog dabtsi
 </p>
 <p>
-3.Qhovncauj â€¦â€¦Koj hais dabtsi
+3.Qhovncauj ……Koj hais dabtsi
 </p>
 <p>
-4.Txhias tesâ€¦.koj ua dabtsi
+4.Txhias tes….koj ua dabtsi
 </p>
 <p>
-5.Txhias taw â€¦â€¦koj mus dabtsi
+5.Txhias taw ……koj mus dabtsi
 </p>
 <p>
-6.Cov me ntxhias â€¦nej ua dabtsi
+6.Cov me ntxhias …nej ua dabtsi
 </p>
 <p>
-7.Cov me tub â€¦.nej ua dabtsi
+7.Cov me tub ….nej ua dabtsi
 </p>
 <p>
-8.Cov pog laus â€¦â€¦..nej ua dabtsi
+8.Cov pog laus ……..nej ua dabtsi
 </p>
 <p>
-9.Cov yawg laus â€¦â€¦.nej ua dabtsi
+9.Cov yawg laus …….nej ua dabtsi
 </p>
 <div style="text-align: left;"><br>
 <table style="text-align: left; width: 100%;" border="1" cellpadding="2" cellspacing="2">
@@ -192,7 +205,7 @@ $().UItoTop({ easingType: 'easeOutQuart' });
 <div class="logo">
 <div class="logo"> <img style="border: 0px solid ; width: 600px; height: 130px;" src="images/logo.png" alt=""> </div>
 <a href="index.html"> </a> </div>
-<p class="link"><span>Â© 2025 <a href="https://www.mekongchristianmedia.com" target="_blank">MekongChristianMedia</a></span><span>
+<p class="link"><span>© 2025 <a href="https://www.mekongchristianmedia.com" target="_blank">MekongChristianMedia</a></span><span>
 |</span><span>&nbsp;</span><span></span><a href="license.html">CreativeCommons
 Attribution
 ShareAlike&nbsp;</a></p>
@@ -202,19 +215,7 @@ ShareAlike&nbsp;</a></p>
 </div>
 </div>
 </div>
-<script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js')
-    .then(function(registration) {
-      console.log('Service Worker registered with scope:', registration.scope);
-    }, function(err) {
-      console.log('Service Worker registration failed:', err);
-    });
-}
-</script>
 </body></html>
-
-
 
 
 
