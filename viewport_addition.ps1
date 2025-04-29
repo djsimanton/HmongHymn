@@ -1,27 +1,13 @@
-﻿# Get the folder where the script is located
-$scriptFolder = Split-Path -Parent $MyInvocation.MyCommand.Definition
+﻿# Set folder to where the script is running
+$folder = Split-Path -Parent $MyInvocation.MyCommand.Definition
 
-# Define the line to insert after
-$insertAfterPattern = '<meta name="keywords"'
+# Define the old and new viewport meta tag
+$old = '<meta name="viewport" content="width=device-width, initial-scale=1.25, maximum-scale=1.25, user-scalable=no">'
+$new = '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">'
 
-# Define the line to insert
-$viewportMeta = '<meta name="viewport" content="width=device-width, initial-scale=1.25, maximum-scale=1.25, user-scalable=no">'
-
-# Get all .html files in the folder (non-recursive)
-Get-ChildItem -Path $scriptFolder -Filter *.html -File | ForEach-Object {
-    $file = $_.FullName
-    $lines = Get-Content $file
-    $newLines = @()
-
-    foreach ($line in $lines) {
-        $newLines += $line
-        if ($line -match $insertAfterPattern) {
-            $newLines += $viewportMeta
-        }
-    }
-
-    # Save updated file
-    Set-Content -Path $file -Value $newLines -Encoding UTF8
+# Process all .html files in the root of the folder
+Get-ChildItem -Path $folder -Filter *.html -File | ForEach-Object {
+    (Get-Content $_.FullName) -replace [regex]::Escape($old), $new | Set-Content $_.FullName
 }
 
-Write-Output "Viewport tag added to applicable HTML files."
+Write-Host "Viewport meta tag updated in all HTML files."
