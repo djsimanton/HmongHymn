@@ -1,7 +1,7 @@
 {
   "name": "Hmong Hymn",
   "short_name": "HmongHymn",
-  "start_url": "/index.html",
+  "start_url": "/",
   "display": "standalone",
   "scope": "/",
   "background_color": "#ffffff",
