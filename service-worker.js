@@ -2,7 +2,6 @@ const CACHE_NAME = 'hmonghymn-cache-v1';
 const urlsToCache = [
   '/',
   '/index.html',
-  '/css/mobile.css',
   '/manifest.json',
   '/icon-192.png',
   '/icon-512.png',
