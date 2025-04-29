@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hmonghymn-cache-v1';
+const CACHE_NAME = 'hmonghymn-cache-v2';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -52,27 +52,32 @@ const urlsToCache = [
 
 
 
-// Install event
-self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
-  );
-  self.skipWaiting();
-});
-
-// Activate event
-self.addEventListener('activate', event => {
-  event.waitUntil(clients.claim());
-});
-
-// Updated fetch event with fallback
 self.addEventListener('fetch', event => {
+  let request = event.request;
+
+  // Normalize extensionless .html requests
+  if (
+    request.mode === 'navigate' ||
+    (request.headers.get('accept')?.includes('text/html') && !request.url.endsWith('.html'))
+  ) {
+    const url = new URL(request.url);
+    if (!url.pathname.endsWith('.html')) {
+      const correctedUrl = url.pathname + '.html';
+      event.respondWith(
+        caches.match(correctedUrl).then(response => {
+          return response || caches.match('/index/contents.html'); // fallback
+        })
+      );
+      return; // stop further fetch logic
+    }
+  }
+
+  // Default fetch handling
   event.respondWith(
-    caches.match(event.request).then(response => {
-      return response || fetch(event.request).catch(() => {
-        // Fallback for navigation requests (when offline)
-        if (event.request.mode === 'navigate') {
-          return caches.match('/index/contents.html');
+    caches.match(request).then(response => {
+      return response || fetch(request).catch(() => {
+        if (request.mode === 'navigate') {
+          return caches.match('/index/contents.html'); // fallback
         }
       });
     })
