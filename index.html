@@ -24,7 +24,7 @@
           // Delay the redirect to give service worker time
           setTimeout(() => {
             window.location.href = '/index/contents.html';
-          }, 5000); // Wait 5 second to allow install
+          }, 1000); // Wait 1 second to allow install
         })
         .catch(err => {
           console.error('Service Worker registration failed', err);
