@@ -3,34 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <title>HmongHymn</title>
-
-  <!-- Redirect to the real homepage -->
-  <meta http-equiv="refresh" content="0; url=index/contents.html">
-
-  <!-- Mobile-friendly -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Link to your CSS (relative from root) -->
-  <link href="css/mobile.css" rel="stylesheet">
-
-    <!-- ✅ PWA Support -->
   <link rel="manifest" href="/manifest.json">
   <link rel="icon" href="/icon-192.png">
-
+  <link href="css/mobile.css" rel="stylesheet">
 </head>
 <body>
   <div class="content">
     <h2>HmongHymn</h2>
-    <dl>
-      <dt>Starting . . .</dt>
-      <dd>If not redirected automatically, <a href="index/contents.html">click here</a></dd>
-    </dl>
+    <p>Loading...</p>
+    <p>If not redirected automatically, <a href="/index/contents.html">click here</a>.</p>
   </div>
+
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js')
-        .then(reg => console.log('Service Worker registered', reg))
-        .catch(err => console.error('Service Worker registration failed', err));
+        .then(reg => {
+          console.log('Service Worker registered', reg);
+          // Delay the redirect to give service worker time
+          setTimeout(() => {
+            window.location.href = '/index/contents.html';
+          }, 1000); // Wait 1 second to allow install
+        })
+        .catch(err => {
+          console.error('Service Worker registration failed', err);
+          // Redirect anyway if it fails
+          window.location.href = '/index/contents.html';
+        });
+    } else {
+      // Fallback for older browsers
+      window.location.href = '/index/contents.html';
     }
   </script>
 </body>

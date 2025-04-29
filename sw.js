@@ -304,21 +304,29 @@ const urlsToCache = [
 '/index/license.html'
 
 
-
-
   // Add more files as needed
 ];
+
+
 
 // Install event
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
   );
+  self.skipWaiting();
+});
+
+// Activate event
+self.addEventListener('activate', event => {
+  event.waitUntil(clients.claim());
 });
 
 // Fetch event
 self.addEventListener('fetch', event => {
   event.respondWith(
-    caches.match(event.request).then(response => response || fetch(event.request))
+    caches.match(event.request).then(response => {
+      return response || fetch(event.request);
+    })
   );
 });
