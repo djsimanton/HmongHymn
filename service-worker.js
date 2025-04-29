@@ -1,6 +1,6 @@
-const CACHE_NAME = 'hmonghymn-cache-v6';
+const CACHE_NAME = 'hmonghymn-cache-v7';
 const urlsToCache = [
-  '/',
+  '/',    // Root index.html
   '/manifest.json',
   '/icon-192.png',
   '/icon-512.png',
@@ -49,36 +49,64 @@ const urlsToCache = [
   // Add more files as needed
 ];
 
+// Install event: cache essential files
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => {
+      return cache.addAll(urlsToCache);
+    })
+  );
+});
 
+// Activate event: cleanup old caches if needed
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(cacheNames =>
+      Promise.all(
+        cacheNames.map(cache => {
+          if (cache !== CACHE_NAME) {
+            return caches.delete(cache);
+          }
+        })
+      )
+    )
+  );
+});
 
+// Fetch event: serve from cache, then fallback
 self.addEventListener('fetch', event => {
-  let request = event.request;
+  const request = event.request;
+  const url = new URL(request.url);
 
-  // Normalize extensionless .html requests
+  // Handle HTML navigation requests with .html fallback
   if (
     request.mode === 'navigate' ||
-    (request.headers.get('accept')?.includes('text/html') && !request.url.endsWith('.html'))
+    (request.headers.get('accept')?.includes('text/html') && !url.pathname.endsWith('.html'))
   ) {
-    const url = new URL(request.url);
-    if (!url.pathname.endsWith('.html')) {
-      const correctedUrl = url.pathname + '.html';
-      event.respondWith(
-        caches.match(correctedUrl).then(response => {
-          return response || caches.match('/index/contents.html'); // fallback
-        })
-      );
-      return; // stop further fetch logic
-    }
+    const fallbackUrl = url.pathname.endsWith('/')
+      ? `${url.pathname}index.html`
+      : `${url.pathname}.html`;
+
+    event.respondWith(
+      caches.match(fallbackUrl).then(response => {
+        return response || caches.match('/index/contents.html');
+      })
+    );
+    return;
   }
 
-  // Default fetch handling
+  // Normal asset fetch
   event.respondWith(
     caches.match(request).then(response => {
-      return response || fetch(request).catch(() => {
-        if (request.mode === 'navigate') {
-          return caches.match('/index/contents.html'); // fallback
-        }
-      });
+      return (
+        response ||
+        fetch(request).catch(() => {
+          // Fallback to contents.html if it's a navigation request
+          if (request.mode === 'navigate') {
+            return caches.match('/index/contents.html');
+          }
+        })
+      );
     })
   );
 });
