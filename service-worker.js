@@ -1,48 +1,48 @@
-const CACHE_NAME = 'hmonghymn-cache-v10';
+const CACHE_NAME = 'hmonghymn-cache-v11';
 const urlsToCache = [
   '/',    // Root index.html
   '/manifest.json',
   '/icon-192.png',
   '/icon-512.png',
-'/index/contentalpha.html',
-'/index/contentenglish.html',
-'/index/contentnumeric.html',
-'/index/contents.html',
-'/index/h.html',
-'/index/h1.html',
-'/index/h10.html',
-'/index/license.html',
-'/index/urls_to_cache.txt',
-'/index/css/slider.css',
-'/index/css/style.css',
-'/index/images/appname.png',
-'/index/images/arrow-l-black.png',
-'/index/images/arrow-r-black.png',
-'/index/images/booktitle.png',
-'/index/images/booktitle_old1.png',
-'/index/images/booktitle_old2.png',
-'/index/images/call.png',
-'/index/images/CC.png',
-'/index/images/footer_bg.png',
-'/index/images/footer_bg1.png',
-'/index/images/logo.png',
-'/index/images/logo.psd',
-'/index/images/music-notes.jpg',
-'/index/images/pin.png',
-'/index/images/search.png',
-'/index/images/search_h.png',
-'/index/images/slide-pagenat.png',
-'/index/images/slider-icons.png',
-'/index/images/slider_bg.jpg',
-'/index/images/slider_bg1.jpg',
-'/index/images/top-move.jpg',
-'/index/js/easing.js',
-'/index/js/jquery.cslider.js',
-'/index/js/jquery.flexisel.js',
-'/index/js/jquery.min.js',
-'/index/js/modernizr.custom.28468.js',
-'/index/js/move-top.js',
-'/index/js/script.js'
+'/contentalpha.html',
+'/contentenglish.html',
+'/contentnumeric.html',
+'/contents.html',
+'/h.html',
+'/h1.html',
+'/h10.html',
+'/license.html',
+'/urls_to_cache.txt',
+'/css/slider.css',
+'/css/style.css',
+'/images/appname.png',
+'/images/arrow-l-black.png',
+'/images/arrow-r-black.png',
+'/images/booktitle.png',
+'/images/booktitle_old1.png',
+'/images/booktitle_old2.png',
+'/images/call.png',
+'/images/CC.png',
+'/images/footer_bg.png',
+'/images/footer_bg1.png',
+'/images/logo.png',
+'/images/logo.psd',
+'/images/music-notes.jpg',
+'/images/pin.png',
+'/images/search.png',
+'/images/search_h.png',
+'/images/slide-pagenat.png',
+'/images/slider-icons.png',
+'/images/slider_bg.jpg',
+'/images/slider_bg1.jpg',
+'/images/top-move.jpg',
+'/js/easing.js',
+'/js/jquery.cslider.js',
+'/js/jquery.flexisel.js',
+'/js/jquery.min.js',
+'/js/modernizr.custom.28468.js',
+'/js/move-top.js',
+'/js/script.js'
 
 
 
@@ -89,7 +89,7 @@ self.addEventListener('fetch', event => {
 
     event.respondWith(
       caches.match(fallbackUrl).then(response => {
-        return response || caches.match('/index/contents.html');
+        return response || caches.match('/contents.html');
       })
     );
     return;
@@ -103,7 +103,7 @@ self.addEventListener('fetch', event => {
         fetch(request).catch(() => {
           // Fallback to contents.html if it's a navigation request
           if (request.mode === 'navigate') {
-            return caches.match('/index/contents.html');
+            return caches.match('/contents.html');
           }
         })
       );
