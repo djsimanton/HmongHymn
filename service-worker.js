@@ -1,7 +1,7 @@
 const CACHE_NAME = 'hmonghymn-cache-v1';
 const urlsToCache = [
   '/',
-  '/index/index.html',
+  '/index.html',
   '/css/mobile.css',
   '/manifest.json',
   '/icon-192.png',
@@ -322,11 +322,16 @@ self.addEventListener('activate', event => {
   event.waitUntil(clients.claim());
 });
 
-// Fetch event
+// Updated fetch event with fallback
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request).then(response => {
-      return response || fetch(event.request);
+      return response || fetch(event.request).catch(() => {
+        // Fallback for navigation requests (when offline)
+        if (event.request.mode === 'navigate') {
+          return caches.match('/index/contents.html');
+        }
+      });
     })
   );
 });
