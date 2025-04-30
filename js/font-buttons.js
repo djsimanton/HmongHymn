@@ -1,4 +1,3 @@
-<script>
 (function () {
     // Apply stored font size
     function applyFontSize(size) {
@@ -45,4 +44,3 @@
         document.body.appendChild(div);
     });
 })();
-</script>
