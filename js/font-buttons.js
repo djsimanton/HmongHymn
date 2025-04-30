@@ -1,11 +1,9 @@
+<script>
 (function () {
     // Apply stored font size
     function applyFontSize(size) {
         document.body.style.fontSize = size + 'em';
         localStorage.setItem('fontSize', size);
-        document.querySelectorAll('p, li, a, h1, h2, h3, h4, h5, h6, span, td').forEach(el => {
-            el.style.fontSize = size + 'em';
-        });
     }
 
     function increaseFontSize() {
@@ -33,25 +31,18 @@
         div.id = 'font-controls';
         div.style.position = 'fixed';
         div.style.bottom = '10px';
-        div.style.right = '10px';
+        div.style.left = '10px'; // Now on bottom left
         div.style.zIndex = '9999';
         div.style.background = '#fff';
         div.style.border = '1px solid #ccc';
         div.style.borderRadius = '5px';
         div.style.padding = '5px';
         div.style.boxShadow = '0 0 5px rgba(0,0,0,0.2)';
-
-        let decreaseBtn = document.createElement('button');
-        decreaseBtn.textContent = 'A−';
-        decreaseBtn.addEventListener('click', decreaseFontSize);
-
-        let increaseBtn = document.createElement('button');
-        increaseBtn.textContent = 'A+';
-        increaseBtn.addEventListener('click', increaseFontSize);
-
-        div.appendChild(decreaseBtn);
-        div.appendChild(increaseBtn);
-
+        div.innerHTML = `
+            <button onclick="(${decreaseFontSize.toString()})()">A-</button>
+            <button onclick="(${increaseFontSize.toString()})()">A+</button>
+        `;
         document.body.appendChild(div);
     });
 })();
+</script>

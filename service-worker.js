@@ -336,7 +336,7 @@ const urlsToCache = [
 'js/modernizr.custom.28468.js',
 'js/move-top.js',
 'js/script.js',
-'js//font-buttons.js'
+'js/font-buttons.js'
 
 
 
