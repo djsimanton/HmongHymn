@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hmonghymn-cache-v16';
+const CACHE_NAME = 'hmonghymn-cache-v17';
 const urlsToCache = [
   '/',    // Root index.html
   '/manifest.json',
@@ -336,6 +336,7 @@ const urlsToCache = [
 'js/modernizr.custom.28468.js',
 'js/move-top.js',
 'js/script.js',
+'js//font-buttons.js'
 
 
 
