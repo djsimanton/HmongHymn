@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hmonghymn-cache-v18';
+const CACHE_NAME = 'hmonghymn-cache-v19';
 const urlsToCache = [
   '/',    // Root index.html
   '/manifest.json',
