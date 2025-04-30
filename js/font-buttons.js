@@ -3,6 +3,9 @@
     function applyFontSize(size) {
         document.body.style.fontSize = size + 'em';
         localStorage.setItem('fontSize', size);
+        document.querySelectorAll('p, li, a, h1, h2, h3, h4, h5, h6, span, td').forEach(el => {
+            el.style.fontSize = size + 'em';
+        });
     }
 
     function increaseFontSize() {
@@ -37,10 +40,18 @@
         div.style.borderRadius = '5px';
         div.style.padding = '5px';
         div.style.boxShadow = '0 0 5px rgba(0,0,0,0.2)';
-        div.innerHTML = `
-            <button onclick="(${decreaseFontSize.toString()})()">A-</button>
-            <button onclick="(${increaseFontSize.toString()})()">A+</button>
-        `;
+
+        let decreaseBtn = document.createElement('button');
+        decreaseBtn.textContent = 'A−';
+        decreaseBtn.addEventListener('click', decreaseFontSize);
+
+        let increaseBtn = document.createElement('button');
+        increaseBtn.textContent = 'A+';
+        increaseBtn.addEventListener('click', increaseFontSize);
+
+        div.appendChild(decreaseBtn);
+        div.appendChild(increaseBtn);
+
         document.body.appendChild(div);
     });
 })();
