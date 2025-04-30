@@ -1,34 +1,38 @@
-document.addEventListener('DOMContentLoaded', function () {
-  // Create font controls
-  const fontControls = document.createElement('div');
-  fontControls.style.position = 'fixed';
-  fontControls.style.top = '10px';
-  fontControls.style.right = '10px';
-  fontControls.style.zIndex = '9999';
-  fontControls.innerHTML = `
-    <button id="font-increase" style="margin-right:5px;">A+</button>
-    <button id="font-decrease">A−</button>
-  `;
-  document.body.appendChild(fontControls);
+function applyFontSize(size) {
+    document.body.style.fontSize = size + 'em';
+    localStorage.setItem('fontSize', size);
+}
 
-  const root = document.documentElement;
-  let fontSize = parseFloat(localStorage.getItem('fontSize')) || 1.0;
+function increaseFontSize() {
+    let currentSize = parseFloat(localStorage.getItem('fontSize')) || 1;
+    if (currentSize < 2.5) {
+        applyFontSize((currentSize + 0.1).toFixed(1));
+    }
+}
 
-  const applyFontSize = () => {
-    root.style.fontSize = fontSize + 'em';
-  };
+function decreaseFontSize() {
+    let currentSize = parseFloat(localStorage.getItem('fontSize')) || 1;
+    if (currentSize > 0.6) {
+        applyFontSize((currentSize - 0.1).toFixed(1));
+    }
+}
 
-  document.getElementById('font-increase').addEventListener('click', () => {
-    fontSize = Math.min(fontSize + 0.1, 2.0);
-    localStorage.setItem('fontSize', fontSize);
-    applyFontSize();
-  });
+window.addEventListener('DOMContentLoaded', () => {
+    let storedSize = parseFloat(localStorage.getItem('fontSize')) || 1;
+    applyFontSize(storedSize.toFixed(1));
 
-  document.getElementById('font-decrease').addEventListener('click', () => {
-    fontSize = Math.max(fontSize - 0.1, 0.6);
-    localStorage.setItem('fontSize', fontSize);
-    applyFontSize();
-  });
-
-  applyFontSize(); // Apply on load
+    // Optional: Add buttons dynamically if not in HTML
+    if (!document.getElementById('font-controls')) {
+        let div = document.createElement('div');
+        div.id = 'font-controls';
+        div.style.position = 'fixed';
+        div.style.bottom = '10px';
+        div.style.right = '10px';
+        div.style.zIndex = '9999';
+        div.innerHTML = `
+            <button onclick="decreaseFontSize()">A-</button>
+            <button onclick="increaseFontSize()">A+</button>
+        `;
+        document.body.appendChild(div);
+    }
 });
