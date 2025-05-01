@@ -33,9 +33,13 @@
         div.style.borderRadius = '5px';
         div.style.padding = '5px';
         div.style.boxShadow = '0 0 5px rgba(0,0,0,0.2)';
+       // div.innerHTML = `
+            //<button id="font-decrease">A-</button>
+            //<button id="font-increase">A+</button>
         div.innerHTML = `
-            <button id="font-decrease">A-</button>
-            <button id="font-increase">A+</button>
+        '<button id="font-decrease" style="background-color:#4CAF50;color:white;border:none;padding:5px 10px;margin:2px;border-radius:4px;">A-</button>' +
+        '<button id="font-increase" style="background-color:#f44336;color:white;border:none;padding:5px 10px;margin:2px;border-radius:4px;">A+</button>';
+    
         `;
         document.body.appendChild(div);
 
