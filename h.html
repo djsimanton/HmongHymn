@@ -1,5 +1,20 @@
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <html><head>
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(function(registration) {
+                    console.log('Service Worker registered with scope:', registration.scope);
+                })
+                .catch(function(error) {
+                    console.log('Service Worker registration failed:', error);
+                });
+        });
+    }
+</script>
+<meta name="theme-color" content="#003366">
+<link rel="manifest" href="/manifest.json">
 <!-- Author: W3layouts Author URL: http://w3layouts.com License: Creative Commons Attribution 3.0 Unported License URL: http://creativecommons.org/licenses/by/3.0/ --><title>HmongHymn</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -149,6 +164,7 @@ ShareAlike&nbsp;</a></p>
 </div>
 <script src="js/font-buttons.js"></script>
 </body></html>
+
 
 
 
