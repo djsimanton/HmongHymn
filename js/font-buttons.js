@@ -25,8 +25,8 @@
         let div = document.createElement('div');
         div.id = 'font-controls';
         div.style.position = 'fixed';
-        div.style.bottom = '10px';
-        div.style.left = '10px';
+        div.style.bottom = '48px';
+        div.style.right = '10px';
         div.style.zIndex = '9999';
         div.style.background = '#fff';
         div.style.border = '1px solid #ccc';
