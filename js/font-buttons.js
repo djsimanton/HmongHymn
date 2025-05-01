@@ -36,11 +36,11 @@
        // div.innerHTML = ` // this is white buttons // below is red/green buttons
             //<button id="font-decrease">A-</button>
             //<button id="font-increase">A+</button>
-        div.innerHTML = ` 
-        '<button id="font-decrease" style="background-color:#4CAF50;color:white;border:none;padding:5px 10px;margin:2px;border-radius:4px;">A-</button>' +
-        '<button id="font-increase" style="background-color:#f44336;color:white;border:none;padding:5px 10px;margin:2px;border-radius:4px;">A+</button>';
-    
+        div.innerHTML = `
+            <button id="font-decrease" style="background-color:#4CAF50;color:white;border:none;padding:5px 10px;margin:2px;border-radius:4px;">A-</button>
+            <button id="font-increase" style="background-color:#f44336;color:white;border:none;padding:5px 10px;margin:2px;border-radius:4px;">A+</button>
         `;
+
         document.body.appendChild(div);
 
         // Attach event listeners
